@@ -152,9 +152,9 @@ const Abrir = styled.button`
       background-color: white;
       border: none;
       margin-right: 15px;
-      position: ${({ numero }) => (numero === 2 || numero === 3 ? "absolute" : "static")};
-      bottom: ${({ numero }) => (numero === 2 || numero === 3 ? "1px" : "initial")};
-      right: ${({ numero }) => (numero === 2 || numero === 3 ? "1px" : "initial")};
+      position:absolute;
+      bottom: 20px;
+      right: 1px;
     `;
 
 const ContainerCards = styled.div`
