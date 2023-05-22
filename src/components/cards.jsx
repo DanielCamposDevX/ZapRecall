@@ -12,6 +12,7 @@ export default function Cards(props) {
     const [numero, setNumero] = React.useState(Array(data.length).fill(1));
     const [acerto, setAcerto] = React.useState(Array(data.length).fill(1));
     const [clicked, setClicked] = React.useState(Array(data.length).fill(false));
+    
 
 
     function handleClick(index) {
@@ -28,7 +29,7 @@ export default function Cards(props) {
             return newClicked;
         });
     }
-    function handleChute(index, chute) {
+    function handleChute(index, chute,img) {
         setAcerto((prevAcerto) => {
             const newAcerto = [...prevAcerto];
             newAcerto[index] = chute;
@@ -39,6 +40,18 @@ export default function Cards(props) {
         let conc = props.concluidos;
         conc++;
         props.setConcluidos(conc);
+        props.setRespostas()
+        let resposta = props.respostas;
+        resposta.push(img);
+        props.setRespostas(resposta);
+        if (resposta.length == 8 ){
+            if (resposta.includes(Image2)){
+                props.setMensagem(['Putz foi quase']);
+            }
+            else{
+               props.setMensagem(['Parábens']);
+            }
+        }
     }
 
 
@@ -67,9 +80,9 @@ export default function Cards(props) {
                         <>
                             <h1 data-test="flashcard-text">{item.answer}</h1>
                             <Botoes>
-                                <Errado onClick={() => handleChute(index, 2)} data-test="no-btn" >Não Lembrei</Errado>
-                                <Quase onClick={() => handleChute(index, 3)} data-test="partial-btn">Quase não lembrei</Quase>
-                                <Certo onClick={() => handleChute(index, 4)} data-test="zap-btn">Zap!</Certo>
+                                <Errado onClick={() => handleChute(index, 2,Image2)} data-test="no-btn" >Não Lembrei</Errado>
+                                <Quase onClick={() => handleChute(index, 3,Image3)} data-test="partial-btn">Quase não lembrei</Quase>
+                                <Certo onClick={() => handleChute(index, 4,Image4)} data-test="zap-btn">Zap!</Certo>
                             </Botoes>
                         </>
                     )}

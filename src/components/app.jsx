@@ -8,13 +8,23 @@ import data from "./data"
 
 
 export default function App() {
-    const [concluidos,setConcluidos] = React.useState(0);
+    const [concluidos, setConcluidos] = React.useState(0);
+    const [respostas, setRespostas] = React.useState([]);
+    const [mensagem,setMensagem] = React.useState([])
+
     return (
         <div>
             <GlobalStyle />
             <Title><Logo src={logo} alt="Logo" /> <h1>ZapRecall</h1> </Title>
-            <Cards setConcluidos={setConcluidos} concluidos={concluidos}/>
-            <Bottom>{concluidos}/{data.length}</Bottom>
+            <Cards setConcluidos={setConcluidos} concluidos={concluidos} respostas={respostas} setRespostas={setRespostas} setMensagem={setMensagem}/>
+            <Bottom>
+                {mensagem.map((mensagem,index)=> (<h1 key={index}>{mensagem}</h1>))}
+                <h1>{concluidos}/{data.length} CONCLUÍDOS</h1>
+                <Respostas>{respostas.map((respostas, index) => (
+                    <img key={index} src={respostas} />
+                ))} </Respostas>
+
+            </Bottom>
         </div>
     )
 }
@@ -51,20 +61,25 @@ const Title = styled.div`
 `
 const Bottom = styled.div`
     display: flex;
+    flex-direction: column;
     position: fixed;
     bottom: 0px;
     right: 0px;
     background-color: white;
     width: 100%;
-    height: 70px;
+    
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     align-items: center;
-    justify-content:center;
+    justify-content: space-evenly;
+    h1{
     font-family: 'Recursive', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: #333333;
+    color: #333333;}
 
+`
+const Respostas = styled.div`
+    display: flex;
 `
