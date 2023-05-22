@@ -1,17 +1,20 @@
 import logo from "../assets/logo.png"
 import styled, { createGlobalStyle } from "styled-components"
 import Cards from "./cards.jsx"
+import React from "react"
+import data from "./data"
+
 
 
 
 export default function App() {
-    let concluidos = 0
+    const [concluidos,setConcluidos] = React.useState(0);
     return (
         <div>
             <GlobalStyle />
             <Title><Logo src={logo} alt="Logo" /> <h1>ZapRecall</h1> </Title>
-            <Cards />
-            <Bottom>{concluidos}/4 CONCLUÍDOS</Bottom>
+            <Cards setConcluidos={setConcluidos} concluidos={concluidos}/>
+            <Bottom>{concluidos}/{data.length}</Bottom>
         </div>
     )
 }
