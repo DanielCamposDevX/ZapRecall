@@ -46,10 +46,10 @@ export default function Cards(props) {
         props.setRespostas(resposta);
         if (resposta.length == 8 ){
             if (resposta.includes(Image2)){
-                props.setMensagem(['Putz foi quase']);
+                props.setMensagem(['Parábens!']);
             }
             else{
-               props.setMensagem(['Parábens']);
+               props.setMensagem(['Putz!']);
             }
         }
     }
@@ -59,7 +59,7 @@ export default function Cards(props) {
     return (
         <ContainerCards>
             {data.map((item, index) => (
-                <Card key={index} numero={numero[index]} acerto={acerto[index]} data-test="flashcard">
+                <Card click={props.click} key={index} numero={numero[index]} acerto={acerto[index]} data-test="flashcard">
                     {numero[index] === 1 && (
                         <>
                             <h1 data-test="flashcard-text">Pergunta {index + 1}</h1>
@@ -179,11 +179,11 @@ const ContainerCards = styled.div`
     `;
 
 const Card = styled.div`
-      background-color: ${({ numero }) => (numero === 1 ? "white" : numero === 2 ? "#ffffd4" : "#ffffd4")};
+      background-color: ${({ numero }) => (numero === 1 || numero === 4 ? "white" : "#ffffd4")};
       width: 90%;
       position: relative;
-      height: ${({ numero }) => (numero === 2 || numero === 3 ? "131px" : "65px")};
-      display: flex;
+      min-height: ${({ numero }) => (numero === 2 || numero === 3 ? "131px" : "65px")};
+      display: ${({ click }) => (!click ? "none" : "flex")};
       align-items: ${({ numero }) => (numero === 2 || numero === 3 ? "start" : "center")};
       justify-content: space-between;
       margin-bottom: 25px;
@@ -198,7 +198,7 @@ const Card = styled.div`
         line-height:${({ numero }) => (numero === 1 ? "19px" : numero === 2 ? "22px" : "22px")};
         color: ${({ acerto }) => (acerto === 4 ? "#2FBE34" : acerto === 2 ? "#FF3030" : acerto === 3 ? "#FF922E" : "#333333")};
         margin-left: 15px;
-        margin-top: ${({ numero }) => (numero === 1 ? "10px" : numero === 2 ? "18px" : "18px")};
+        margin-top: ${({ numero }) => (numero === 1 || numero === 4 ? "" : "18px")};
         text-decoration: ${({ acerto }) => (acerto === 2 ? "line-through" : acerto === 3 ? "line-through" : acerto === 4 ? "line-through" : "none")};
       }
     `;
