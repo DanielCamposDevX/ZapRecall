@@ -169,7 +169,7 @@ const Card = styled.div`
       background-color: ${({ numero }) => (numero === 1 ? "white" : numero === 2 ? "#ffffd4" : "#ffffd4")};
       width: 90%;
       position: relative;
-      height: ${({ numero }) => (numero === 3 ? "131px" : "65px")};
+      height: ${({ numero }) => (numero === 2 || numero === 3 ? "131px" : "65px")};
       display: flex;
       align-items: ${({ numero }) => (numero === 3 ? "start" : "center")};
       justify-content: space-between;
