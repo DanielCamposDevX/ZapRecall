@@ -171,7 +171,7 @@ const Card = styled.div`
       position: relative;
       height: ${({ numero }) => (numero === 2 || numero === 3 ? "131px" : "65px")};
       display: flex;
-      align-items: ${({ numero }) => (numero === 3 ? "start" : "center")};
+      align-items: ${({ numero }) => (numero === 2 || numero === 3 ? "start" : "center")};
       justify-content: space-between;
       margin-bottom: 25px;
       box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
