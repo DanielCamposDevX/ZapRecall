@@ -15,38 +15,48 @@ export default function App() {
     const [concluidos, setConcluidos] = React.useState(0);
     const [respostas, setRespostas] = React.useState([]);
     const [mensagem, setMensagem] = React.useState([]);
-    const [click,setClick] = React.useState(false);
+    const [click, setClick] = React.useState(false);
 
     return (
         <div>
             <GlobalStyle />
-            <Home click={click} setClick={setClick}/>
+            <Home click={click} setClick={setClick} />
             <Title click={click}><Logo src={logo} alt="Logo" /> <h1>ZapRecall</h1> </Title>
             <Cards click={click} setConcluidos={setConcluidos} concluidos={concluidos} respostas={respostas} setRespostas={setRespostas} setMensagem={setMensagem} />
-            <Bottom click={click}>
+            <Bottom click={click} data-test="footer" >
                 {mensagem.map((mensagem, index) => {
-                    if (mensagem.includes('Parábens!')) {
+                    if (mensagem.includes("Parábens!")) {
                         return (
                             <Display key={index}>
                                 <img src={party} />
-                                <h1>{mensagem}</h1>
+                                <h1 data-test="finish-text">{mensagem}</h1>
                             </Display>)
                     }
-                    if (mensagem.includes('Putz!')){
+                    if (mensagem.includes('Putz!')) {
                         return (
                             <Display key={index}>
                                 <img src={sad} />
-                                <h1>{mensagem}</h1>
+                                <h1 data-test="finish-text">{mensagem}</h1>
                             </Display>)
                     }
                 }
                 )}
                 <h1>{concluidos}/{data.length} CONCLUÍDOS</h1>
-                <Respostas>{respostas.map((respostas, index) => 
-                    (
-                        <img key={index} src={respostas} />
-                    )
-                )} </Respostas>
+                <Respostas>
+                    {respostas.map((resposta, index) => {
+                        let dataTest;
+                        if (resposta === "/src/assets/Vectorno.svg") {
+                            dataTest = "no-icon";
+                        } else if (resposta === "/src/assets/Vectoryes.svg") {
+                            dataTest = "zap-icon";
+                        } else if (resposta === "/src/assets/Vectorpartial.svg") {
+                            dataTest = "partial-icon";
+                        }
+                        return (
+                            <img key={index} src={resposta} data-test={dataTest} />
+                        );
+                    })}
+                </Respostas>
 
             </Bottom>
         </div>

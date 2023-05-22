@@ -40,16 +40,18 @@ export default function Cards(props) {
         let conc = props.concluidos;
         conc++;
         props.setConcluidos(conc);
-        props.setRespostas()
         let resposta = props.respostas;
         resposta.push(img);
         props.setRespostas(resposta);
+        console.log(resposta)
         if (resposta.length == 8 ){
-            if (resposta.includes(Image2)){
+            if (!resposta.includes('/src/assets/Vectorno.svg')){
                 props.setMensagem(['Parábens!']);
+                console.log("para");
             }
             else{
                props.setMensagem(['Putz!']);
+               console.log("putz");
             }
         }
     }

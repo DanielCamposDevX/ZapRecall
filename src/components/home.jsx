@@ -15,7 +15,7 @@ export default function Home(props) {
         <Page aparece={aparece}>
             <Logo src={logo} />
             <Title><h1>ZapRecall</h1></Title>
-            <Botao onClick={() => handleClick()}>Iniciar Recall!</Botao>
+            <Botao onClick={() => handleClick()} data-test="start-btn">Iniciar Recall!</Botao>
         </Page>
     )
 }
